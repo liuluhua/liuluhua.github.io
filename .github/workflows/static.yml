@@ -1,3 +1,18 @@
+#这段代码是一个用于将静态内容部署到GitHub Pages的GitHub Actions工作流程。让我们逐步解释每个部分的含义：
+#name: Deploy static content to Pages: 工作流的名称。
+#on: 触发工作流程的事件。在这个例子中，工作流程将在推送到默认分支（main）时触发，或者可以从Actions选项卡手动触发。
+#permissions: 设置GITHUB_TOKEN的权限，以允许部署到GitHub Pages。这里设置了对内容（contents）的读取权限和对页面（pages）的写入权限。
+#concurrency: 配置并发限制，确保一次只能进行一个部署。设置了一个名为"pages"的组，并且不会取消正在进行的部署，以允许这些生产部署完成。
+#jobs: 工作流程中的作业。在这个例子中，只有一个部署作业（deploy job），因为我们只是要部署静态内容。
+#deploy: 部署作业的名称。
+#environment: 设置部署作业的环境变量。这里设置了环境名称为"github-pages"，以及部署完成后的URL地址。
+#runs-on: 配置作业运行的操作系统环境。在这个例子中，使用的是最新的Ubuntu环境。
+#steps: 作业的步骤列表。
+#Checkout: 检出代码仓库。
+#Setup Pages: 配置GitHub Pages。
+#Upload artifact: 上传部署内容。使用了actions/upload-pages-artifact@v1操作，将整个仓库的内容上传。
+#Deploy to GitHub Pages: 部署到GitHub Pages。使用了actions/deploy-pages@v2操作，将上传的内容部署到GitHub Pages。
+#这个工作流程的目的是在将内容推送到默认分支（main）时自动部署到GitHub Pages。它将代码检出到工作目录，然后配置GitHub Pages并上传内容，最后将内容部署到GitHub Pages。部署完成后，可以通过${{ steps.deployment.outputs.page_url }}访问部署的页面的URL。
 # Simple workflow for deploying static content to GitHub Pages
 name: Deploy static content to Pages
 
